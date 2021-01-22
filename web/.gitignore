@@ -10,5 +10,5 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-/database
-/database/pg_stat_tmp/*.stat
+../database
+../database/pg_stat_tmp/*.stat
