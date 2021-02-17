@@ -4,9 +4,13 @@ import VueRouter from 'vue-router'
 // ページコンポーネントをインポートする
 import PhotoList from './pages/PhotoList.vue'
 import Login from './pages/Login.vue'
+import PhotoDetail from './pages/PhotoDetail.vue'
 
 // ストアをインポートする
 import store from './store'
+
+// エラーコンポーネントをインポートする
+import SystemError from './pages/errors/System.vue'
 
 // VueRouterプラグインを使用する
 // これによって<RouterView />コンポーネントなどを使うことができる
@@ -28,6 +32,15 @@ const routes = [
         next()
       }
     }
+  },
+  {
+    path: '/photos/:id',
+    component: PhotoDetail,
+    props: true
+  },
+  {
+    path: '/500',
+    component: SystemError
   }
 ]
 
