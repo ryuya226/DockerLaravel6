@@ -61,54 +61,54 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+  import { mapState } from 'vuex'
 
-export default {
-  data () {
-    return {
-      tab: 1,
-      loginForm: {
-        email: '',
-        password: ''
-      },
-      registerForm: {
-        name: '',
-        email: '',
-        password: '',
-        password_confirmation: ''
-      },
-    }
-  },
-  computed: mapState({
-    apiStatus: state => state.auth.apiStatus,
-    loginErrors: state => state.auth.loginErrorMessages,
-    registerErrors: state => state.auth.registerErrorMessages
-  }),
-  methods: {
-    async register () {
-      // authストアのresigterアクションを呼び出す
-      await this.$store.dispatch('auth/register', this.registerForm)
-      if (this.apiStatus) {
-        // トップページに移動する
-        this.$router.push('/')
+  export default {
+    data () {
+      return {
+        tab: 1,
+        loginForm: {
+          email: '',
+          password: ''
+        },
+        registerForm: {
+          name: '',
+          email: '',
+          password: '',
+          password_confirmation: ''
+        },
       }
     },
-    async login () {
-      // authストアのloginアクションを呼び出す
-      await this.$store.dispatch('auth/login', this.loginForm)
-      
-      if (this.apiStatus) {
-        // トップページに移動する
-        this.$router.push('/')
+    computed: mapState({
+      apiStatus: state => state.auth.apiStatus,
+      loginErrors: state => state.auth.loginErrorMessages,
+      registerErrors: state => state.auth.registerErrorMessages
+    }),
+    methods: {
+      async register () {
+        // authストアのresigterアクションを呼び出す
+        await this.$store.dispatch('auth/register', this.registerForm)
+        if (this.apiStatus) {
+          // トップページに移動する
+          this.$router.push('/')
+        }
+      },
+      async login () {
+        // authストアのloginアクションを呼び出す
+        await this.$store.dispatch('auth/login', this.loginForm)
+        
+        if (this.apiStatus) {
+          // トップページに移動する
+          this.$router.push('/')
+        }
+      },
+      clearError () {
+        this.$store.commit('auth/setRegisterErrorMessages', null)
+        this.$store.commit('auth/setLoginErrorMessages', null)
       }
     },
-    clearError () {
-      this.$store.commit('auth/setRegisterErrorMessages', null)
-      this.$store.commit('auth/setLoginErrorMessages', null)
+    created () {
+      this.clearError()
     }
-  },
-  created () {
-    this.clearError()
   }
-}
 </script>

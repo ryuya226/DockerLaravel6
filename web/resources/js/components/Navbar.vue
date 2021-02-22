@@ -24,24 +24,24 @@
 </template>
 
 <script>
-import PhotoForm from './PhotoForm.vue'
+  import PhotoForm from './PhotoForm.vue'
 
-export default {
-  components: {
-    PhotoForm
-  },
-  data () {
-    return {
-      showForm: false
-    }
-  },
-  computed: {
-    isLogin () {
-      return this.$store.getters['auth/check']
+  export default {
+    components: {
+      PhotoForm
     },
-    username () {
-      return this.$store.getters['auth/username']
+    data () {
+      return {
+        showForm: false
+      }
+    },
+    computed: {
+      isLogin () {
+        return this.$store.getters['auth/check']
+      },
+      username () {
+        return this.$store.getters['auth/username']
+      }
     }
   }
-}
 </script>
